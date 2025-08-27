@@ -8,11 +8,11 @@ interface ErrorDisplayProps {
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error, onRetry }) => {
   return (
     <div className="text-center py-12">
-      <div className="rounded-lg p-6 max-w-md mx-auto border shadow-md" 
-           style={{ 
-             backgroundColor: '#fef2f2', 
-             borderColor: '#ef4444' 
-           }}>
+      <div className="rounded-lg p-6 max-w-md mx-auto border shadow-md"
+        style={{
+          backgroundColor: '#fef2f2',
+          borderColor: '#ef4444'
+        }}>
         <div className="text-4xl mb-4" style={{ color: '#ef4444' }}>⚠️</div>
         <div className="text-lg font-medium mb-2" style={{ color: '#0f172a' }}>
           분석에 실패했습니다

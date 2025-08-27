@@ -39,11 +39,10 @@ const AuthButton: React.FC = () => {
     <div className="relative">
       <button
         onClick={handleButtonClick}
-        className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${
-          isAuthenticated
+        className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${isAuthenticated
             ? 'hover:shadow-md'
             : 'hover:shadow-md'
-        }`}
+          }`}
         style={{
           backgroundColor: isAuthenticated ? '#f0f9ff' : '#fef7f0',
           color: isAuthenticated ? '#0369a1' : '#ea580c',
@@ -58,8 +57,8 @@ const AuthButton: React.FC = () => {
 
       {/* 드롭다운 메뉴 */}
       {showDropdown && isAuthenticated && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border z-10" 
-             style={{ borderColor: '#e2e8f0' }}>
+        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border z-10"
+          style={{ borderColor: '#e2e8f0' }}>
           <div className="py-1">
             <button
               onClick={() => {

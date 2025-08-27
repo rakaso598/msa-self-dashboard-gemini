@@ -38,10 +38,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50" 
-         style={{ backgroundColor: 'rgba(15, 23, 42, 0.5)' }}>
-      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md mx-4 border" 
-           style={{ borderColor: '#e2e8f0' }}>
+    <div className="fixed inset-0 flex items-center justify-center z-50"
+      style={{ backgroundColor: 'rgba(15, 23, 42, 0.5)' }}>
+      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md mx-4 border"
+        style={{ borderColor: '#e2e8f0' }}>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold" style={{ color: '#0f172a' }}>서비스 접근 키 설정</h2>
           <button
@@ -76,7 +76,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="여기에 서비스 접근 키를 입력하세요..."
               className="w-full px-4 py-3 rounded-xl transition-all duration-200 border-2"
-              style={{ 
+              style={{
                 borderColor: '#e2e8f0',
                 color: '#0f172a',
                 backgroundColor: '#fafbfc'
@@ -93,7 +93,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
               type="button"
               onClick={handleClose}
               className="px-6 py-3 text-sm font-medium rounded-xl transition-all duration-200 hover:shadow-md"
-              style={{ 
+              style={{
                 color: '#475569',
                 backgroundColor: '#f1f5f9',
                 border: '1px solid #e2e8f0'
@@ -109,8 +109,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
               disabled={!apiKey.trim() || isLoading}
               className="px-6 py-3 text-sm font-bold text-white rounded-xl transition-all duration-200 transform hover:scale-105 hover:shadow-lg disabled:cursor-not-allowed"
               style={{
-                background: !apiKey.trim() || isLoading 
-                  ? '#94a3b8' 
+                background: !apiKey.trim() || isLoading
+                  ? '#94a3b8'
                   : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
               }}
             >
