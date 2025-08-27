@@ -1,4 +1,4 @@
-# AI 기반 셀프 분석 대시보드 (AI Self-Improvement Dashboard) - ✨ [바로가기](https://msa-self-dashboard-gemini.vercel.app)
+# AI 기반 셀프 분석 대시보드 - ✨[바로가기](https://msa-self-dashboard-gemini.vercel.app)
 
 ## 🔒 메인화면
 <img width="600" alt="메인화면" src="docs/AI셀프분석대시보드LOCK.png" />
