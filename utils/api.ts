@@ -1,9 +1,13 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+import { getApiKey } from './localStorage';
 
-const headers = {
-  'Content-Type': 'application/json',
-  'x-api-key': API_KEY || '',
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+const getHeaders = () => {
+  const apiKey = getApiKey() || process.env.NEXT_PUBLIC_API_KEY;
+  return {
+    'Content-Type': 'application/json',
+    'x-api-key': apiKey || '',
+  };
 };
 
 export interface SummarizeResponse {
@@ -27,9 +31,14 @@ export interface ProcessTextResult {
 }
 
 export async function summarizeText(text: string): Promise<SummarizeResponse> {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+  }
+
   const response = await fetch(`${API_BASE_URL}/gemini/summarize`, {
     method: 'POST',
-    headers,
+    headers: getHeaders(),
     body: JSON.stringify({ text }),
   });
 
@@ -41,9 +50,14 @@ export async function summarizeText(text: string): Promise<SummarizeResponse> {
 }
 
 export async function analyzeSentiment(text: string): Promise<SentimentResponse> {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+  }
+
   const response = await fetch(`${API_BASE_URL}/gemini/analyze_sentiment`, {
     method: 'POST',
-    headers,
+    headers: getHeaders(),
     body: JSON.stringify({ text }),
   });
 
@@ -55,9 +69,14 @@ export async function analyzeSentiment(text: string): Promise<SentimentResponse>
 }
 
 export async function generateResponse(text: string): Promise<GenerateResponse> {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+  }
+
   const response = await fetch(`${API_BASE_URL}/gemini/generate_response`, {
     method: 'POST',
-    headers,
+    headers: getHeaders(),
     body: JSON.stringify({ text }),
   });
 

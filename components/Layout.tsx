@@ -1,4 +1,5 @@
 import React from 'react';
+import AuthButton from './AuthButton';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
+              <AuthButton />
               <span className="text-sm text-gray-500">
                 Powered by Gemini AI
               </span>

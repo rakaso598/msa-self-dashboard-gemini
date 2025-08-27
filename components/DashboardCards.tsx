@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ResultCard from './ResultCard';
 import SentimentChart from './SentimentChart';
 import { ProcessTextResult } from '../utils/api';
+import { hasApiKey } from '../utils/localStorage';
 
 interface DashboardCardsProps {
   results: ProcessTextResult | null;
@@ -9,6 +10,27 @@ interface DashboardCardsProps {
 }
 
 const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) => {
+  const [isApiKeySet, setIsApiKeySet] = useState(false);
+
+  useEffect(() => {
+    setIsApiKeySet(hasApiKey());
+  }, []);
+
+  if (!isApiKeySet) {
+    return (
+      <div className="text-center py-12">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 max-w-md mx-auto">
+          <div className="text-yellow-600 text-4xl mb-4">🔒</div>
+          <div className="text-yellow-800 text-lg font-medium mb-2">
+            API 키 설정이 필요합니다
+          </div>
+          <div className="text-yellow-700 text-sm">
+            헤더의 자물쇠 아이콘을 클릭하여 Gemini API 키를 설정해주세요.
+          </div>
+        </div>
+      </div>
+    );
+  }
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
