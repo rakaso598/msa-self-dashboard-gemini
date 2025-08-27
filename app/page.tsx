@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import TextInputArea from '../components/TextInputArea';
 import DashboardCards from '../components/DashboardCards';
 import ErrorDisplay from '../components/ErrorDisplay';
+import FeatureGuide from '../components/FeatureGuide';
 import { processText, ProcessTextResult } from '../utils/api';
 
 export default function Home() {
@@ -38,6 +39,9 @@ export default function Home() {
   return (
     <Layout>
       <div className="max-w-6xl mx-auto">
+        {/* 기능 안내 섹션 */}
+        <FeatureGuide />
+
         {/* 텍스트 입력 영역 */}
         <TextInputArea
           value={inputText}
