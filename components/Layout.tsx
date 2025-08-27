@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50" style={{ backgroundColor: '#F8F8F8' }}>
       {/* 헤더 */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b" style={{ borderColor: '#e2e8f0' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">

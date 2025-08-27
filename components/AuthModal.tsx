@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { saveApiKey } from '../utils/localStorage';
 
 interface AuthModalProps {
@@ -12,6 +12,20 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
   const [apiKey, setApiKey] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // 모달이 열릴 때 body 스크롤 방지
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // 컴포넌트 언마운트 시 정리
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,11 +49,32 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
     onClose();
   };
 
+  // 배경 클릭 시 모달 닫기
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md mx-4">
+    <div
+      className="fixed inset-0 flex items-center justify-center"
+      style={{
+        backgroundColor: 'rgba(15, 23, 42, 0.7)',
+        zIndex: 9999
+      }}
+      onClick={handleBackdropClick}
+    >
+      <div
+        className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md mx-4 border relative"
+        style={{
+          borderColor: '#e2e8f0',
+          zIndex: 10000
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">서비스 접근 키 설정</h2>
           <button
