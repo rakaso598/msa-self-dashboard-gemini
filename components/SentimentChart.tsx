@@ -14,21 +14,21 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
 
     if (normalized.includes('긍정') || normalized.includes('positive')) {
       return [
-        { name: '긍정', value: 70, color: '#10B981' },
-        { name: '중립', value: 20, color: '#6B7280' },
-        { name: '부정', value: 10, color: '#EF4444' },
+        { name: '긍정', value: 70, color: '#0088FE' },
+        { name: '중립', value: 20, color: '#FFBB28' },
+        { name: '부정', value: 10, color: '#FF8042' },
       ];
     } else if (normalized.includes('부정') || normalized.includes('negative')) {
       return [
-        { name: '긍정', value: 10, color: '#10B981' },
-        { name: '중립', value: 20, color: '#6B7280' },
-        { name: '부정', value: 70, color: '#EF4444' },
+        { name: '긍정', value: 10, color: '#0088FE' },
+        { name: '중립', value: 20, color: '#FFBB28' },
+        { name: '부정', value: 70, color: '#FF8042' },
       ];
     } else {
       return [
-        { name: '긍정', value: 30, color: '#10B981' },
-        { name: '중립', value: 40, color: '#6B7280' },
-        { name: '부정', value: 30, color: '#EF4444' },
+        { name: '긍정', value: 30, color: '#0088FE' },
+        { name: '중립', value: 40, color: '#FFBB28' },
+        { name: '부정', value: 30, color: '#FF8042' },
       ];
     }
   };
@@ -41,16 +41,16 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 h-full">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+    <div className="bg-white rounded-xl shadow-md p-6 h-full transition-shadow hover:shadow-lg">
+      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
         <span className="mr-3">📊</span>
         감정 분석
       </h3>
 
       {/* 주요 감정 표시 */}
-      <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-        <p className="text-sm font-medium text-gray-700 mb-1">분석된 주요 감정</p>
-        <p className="text-lg font-semibold text-gray-900">{sentiment}</p>
+      <div className="mb-6 p-4 bg-gray-50 rounded-xl">
+        <p className="text-sm font-semibold text-gray-700 mb-1">분석된 주요 감정</p>
+        <p className="text-lg font-bold text-gray-900">{sentiment}</p>
       </div>
 
       {/* 차트 섹션 */}
@@ -83,7 +83,7 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
       </div>
 
       {/* 부가 설명 */}
-      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+      <div className="mt-4 p-3 bg-blue-50 rounded-xl">
         <p className="text-xs text-blue-700">
           💡 위 차트는 입력된 텍스트의 감정 분석 결과를 시각화한 것입니다.
           실제 분석 결과에 따라 비율이 조정됩니다.

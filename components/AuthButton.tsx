@@ -39,17 +39,14 @@ const AuthButton: React.FC = () => {
     <div className="relative">
       <button
         onClick={handleButtonClick}
-        className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${isAuthenticated
-          ? 'text-green-700 hover:bg-green-50'
-          : 'text-red-700 hover:bg-red-50'
+        className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${isAuthenticated
+            ? 'text-blue-500 hover:bg-blue-50'
+            : 'text-gray-500 hover:bg-gray-100'
           }`}
         title={isAuthenticated ? '서비스 접근 키 설정됨' : '서비스 접근 키 설정 필요'}
       >
-        <span className="text-lg">
+        <span className="text-xl">
           {isAuthenticated ? '🔓' : '🔒'}
-        </span>
-        <span className="text-sm font-medium hidden sm:block">
-          {isAuthenticated ? '접근 키 설정됨' : '접근 키 설정'}
         </span>
       </button>
 

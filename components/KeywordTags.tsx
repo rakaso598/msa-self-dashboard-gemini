@@ -16,13 +16,13 @@ const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
   if (keywordList.length === 0) return null;
 
   return (
-    <div className="mt-3">
-      <h4 className="text-sm font-medium text-gray-700 mb-2">추출된 키워드</h4>
+    <div className="mt-4">
+      <h4 className="text-sm font-semibold text-gray-700 mb-3">추출된 키워드</h4>
       <div className="flex flex-wrap gap-2">
         {keywordList.map((keyword, index) => (
           <span
             key={index}
-            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200"
+            className="inline-flex items-center bg-gray-200 text-gray-800 text-sm py-1 px-3 rounded-full font-medium transition-all hover:bg-gray-300"
           >
             {keyword}
           </span>

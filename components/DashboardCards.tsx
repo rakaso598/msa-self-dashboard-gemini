@@ -39,12 +39,9 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   // results가 있으면 API 키가 설정되어 있다고 가정
   useEffect(() => {
     if (results) {
-      console.log('Results received:', results);
       setIsApiKeySet(true);
     }
   }, [results]);
-
-  console.log('DashboardCards render - isApiKeySet:', isApiKeySet, 'results:', results, 'isLoading:', isLoading);
 
   if (!isApiKeySet) {
     return (
@@ -63,12 +60,12 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   }
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
+          <div key={i} className="bg-white rounded-xl shadow-md p-6 animate-pulse">
             <div className="flex items-center mb-4">
               <div className="h-6 w-6 bg-gray-200 rounded mr-3"></div>
-              <div className="h-5 bg-gray-200 rounded w-1/3"></div>
+              <div className="h-6 bg-gray-200 rounded w-1/3"></div>
             </div>
             <div className="space-y-3">
               <div className="h-4 bg-gray-200 rounded"></div>
@@ -95,9 +92,9 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* 요약 & 키워드 카드 */}
-      <div className="lg:col-span-1">
+      <div className="transform transition-transform hover:scale-105">
         <SummaryCard
           summary={results.summary}
           keywords={results.keywords}
@@ -105,12 +102,12 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
       </div>
 
       {/* 감정 분석 차트 */}
-      <div className="lg:col-span-1">
+      <div className="transform transition-transform hover:scale-105">
         <SentimentChart sentiment={results.sentiment} />
       </div>
 
       {/* AI 응답 카드 */}
-      <div className="lg:col-span-2 xl:col-span-1">
+      <div className="transform transition-transform hover:scale-105">
         <AIResponseCard response={results.aiResponse} />
       </div>
     </div>

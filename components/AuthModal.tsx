@@ -39,29 +39,29 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-900">서비스 접근 키 설정</h2>
+      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md mx-4">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">서비스 접근 키 설정</h2>
           <button
             onClick={handleClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl"
+            className="text-gray-400 hover:text-gray-600 text-2xl transition-colors"
           >
             ×
           </button>
         </div>
 
-        <div className="mb-4">
-          <p className="text-sm text-gray-600 mb-2">
+        <div className="mb-6">
+          <p className="text-gray-600 mb-3 leading-relaxed">
             서비스 이용을 위한 접근 키를 입력해주세요. 입력한 키는 브라우저에 안전하게 저장됩니다.
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-sm text-gray-500">
             접근 키는 로컬 저장소에만 저장되며 서버로 전송되지 않습니다.
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="mb-6">
+            <label htmlFor="apiKey" className="block text-sm font-semibold text-gray-700 mb-3">
               서비스 접근 키
             </label>
             <input
@@ -70,7 +70,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="여기에 서비스 접근 키를 입력하세요..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               disabled={isLoading}
               required
             />
@@ -80,7 +80,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
             <button
               type="button"
               onClick={handleClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
+              className="px-6 py-3 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
               disabled={isLoading}
             >
               취소
@@ -88,7 +88,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSave }) => {
             <button
               type="submit"
               disabled={!apiKey.trim() || isLoading}
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="px-6 py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all transform hover:scale-105"
             >
               {isLoading ? '저장 중...' : '저장'}
             </button>
