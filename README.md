@@ -13,7 +13,7 @@
 
 ### 필수 환경변수
 ```bash
-# API 기본 URL
+# 서비스 접근 키 설정 (실제 값으로 변경해주세요)
 NEXT_PUBLIC_API_BASE_URL=https://msa-brain-gemini-173411279831.asia-northeast3.run.app
 # 서비스 접근 키 (선택사항 - UI에서도 설정 가능)
 NEXT_PUBLIC_API_KEY=액세스키는_GCP에배포된_도커컨테이너의_env에작성된_임의의키_입니다
