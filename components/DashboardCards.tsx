@@ -14,8 +14,37 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   const [isApiKeySet, setIsApiKeySet] = useState(false);
 
   useEffect(() => {
-    setIsApiKeySet(hasApiKey());
+    const checkApiKey = () => {
+      setIsApiKeySet(hasApiKey());
+    };
+
+    checkApiKey();
+
+    // localStorage 변경을 감지하기 위한 이벤트 리스너
+    window.addEventListener('storage', checkApiKey);
+
+    // API 키 변경을 감지하기 위한 사용자 정의 이벤트 리스너
+    window.addEventListener('apiKeyChanged', checkApiKey);
+
+    // 컴포넌트가 포커스를 받을 때마다 체크
+    window.addEventListener('focus', checkApiKey);
+
+    return () => {
+      window.removeEventListener('storage', checkApiKey);
+      window.removeEventListener('apiKeyChanged', checkApiKey);
+      window.removeEventListener('focus', checkApiKey);
+    };
   }, []);
+
+  // results가 있으면 API 키가 설정되어 있다고 가정
+  useEffect(() => {
+    if (results) {
+      console.log('Results received:', results);
+      setIsApiKeySet(true);
+    }
+  }, [results]);
+
+  console.log('DashboardCards render - isApiKeySet:', isApiKeySet, 'results:', results, 'isLoading:', isLoading);
 
   if (!isApiKeySet) {
     return (

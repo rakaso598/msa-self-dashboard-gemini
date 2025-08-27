@@ -15,12 +15,16 @@ const AuthButton: React.FC = () => {
 
   const handleApiKeySave = () => {
     setIsAuthenticated(true);
+    // 다른 컴포넌트들이 변경을 감지할 수 있도록 사용자 정의 이벤트 발생
+    window.dispatchEvent(new Event('apiKeyChanged'));
   };
 
   const handleRemoveApiKey = () => {
     removeApiKey();
     setIsAuthenticated(false);
     setShowDropdown(false);
+    // 다른 컴포넌트들이 변경을 감지할 수 있도록 사용자 정의 이벤트 발생
+    window.dispatchEvent(new Event('apiKeyChanged'));
   };
 
   const handleButtonClick = () => {
