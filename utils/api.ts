@@ -10,6 +10,12 @@ const getHeaders = () => {
   };
 };
 
+const validateEnvironment = () => {
+  if (!API_BASE_URL) {
+    throw new Error('API_BASE_URL이 설정되지 않았습니다. 환경 변수를 확인해주세요.');
+  }
+};
+
 export interface SummarizeResponse {
   summary: string;
   keywords: string;
@@ -31,6 +37,8 @@ export interface ProcessTextResult {
 }
 
 export async function summarizeText(text: string): Promise<SummarizeResponse> {
+  validateEnvironment();
+
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
@@ -50,6 +58,8 @@ export async function summarizeText(text: string): Promise<SummarizeResponse> {
 }
 
 export async function analyzeSentiment(text: string): Promise<SentimentResponse> {
+  validateEnvironment();
+
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
@@ -69,6 +79,8 @@ export async function analyzeSentiment(text: string): Promise<SentimentResponse>
 }
 
 export async function generateResponse(text: string): Promise<GenerateResponse> {
+  validateEnvironment();
+
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');

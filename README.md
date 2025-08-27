@@ -36,3 +36,25 @@
 - `POST /gemini/summarize` - 텍스트 요약 및 키워드 추출
 - `POST /gemini/analyze_sentiment` - 감정 분석
 - `POST /gemini/generate_response` - AI 응답 생성
+
+## 배포
+
+### Vercel 배포
+
+1. 환경 변수 설정:
+   ```
+   NEXT_PUBLIC_API_BASE_URL=https://msa-brain-gemini-173411279831.asia-northeast3.run.app
+   ```
+
+2. 배포 명령어:
+   ```bash
+   vercel --prod
+   ```
+
+자세한 배포 가이드는 [VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md)를 참고하세요.
+
+## 문제 해결
+
+### 405 Method Not Allowed 오류
+- Vercel 환경 변수가 제대로 설정되었는지 확인
+- API URL에 `undefined`가 포함되지 않았는지 확인
