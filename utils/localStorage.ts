@@ -1,4 +1,4 @@
-const API_KEY_STORAGE_KEY = 'gemini_api_key';
+const API_KEY_STORAGE_KEY = 'service_access_key';
 
 export const saveApiKey = (apiKey: string): void => {
   if (typeof window !== 'undefined') {

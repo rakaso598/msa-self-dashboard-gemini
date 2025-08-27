@@ -22,10 +22,10 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 max-w-md mx-auto">
           <div className="text-yellow-600 text-4xl mb-4">🔒</div>
           <div className="text-yellow-800 text-lg font-medium mb-2">
-            API 키 설정이 필요합니다
+            서비스 접근 키 설정이 필요합니다
           </div>
           <div className="text-yellow-700 text-sm">
-            헤더의 자물쇠 아이콘을 클릭하여 Gemini API 키를 설정해주세요.
+            헤더의 자물쇠 아이콘을 클릭하여 서비스 접근 키를 설정해주세요.
           </div>
         </div>
       </div>

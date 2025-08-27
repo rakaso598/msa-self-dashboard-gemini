@@ -39,13 +39,13 @@ const AuthButton: React.FC = () => {
           ? 'text-green-700 hover:bg-green-50'
           : 'text-red-700 hover:bg-red-50'
           }`}
-        title={isAuthenticated ? 'API 키 설정됨' : 'API 키 설정 필요'}
+        title={isAuthenticated ? '서비스 접근 키 설정됨' : '서비스 접근 키 설정 필요'}
       >
         <span className="text-lg">
           {isAuthenticated ? '🔓' : '🔒'}
         </span>
         <span className="text-sm font-medium hidden sm:block">
-          {isAuthenticated ? 'API 키 설정됨' : 'API 키 설정'}
+          {isAuthenticated ? '접근 키 설정됨' : '접근 키 설정'}
         </span>
       </button>
 
@@ -60,13 +60,13 @@ const AuthButton: React.FC = () => {
               }}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
             >
-              API 키 변경
+              접근 키 변경
             </button>
             <button
               onClick={handleRemoveApiKey}
               className="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
             >
-              API 키 삭제
+              접근 키 삭제
             </button>
           </div>
         </div>

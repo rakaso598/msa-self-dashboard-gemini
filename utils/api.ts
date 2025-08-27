@@ -33,7 +33,7 @@ export interface ProcessTextResult {
 export async function summarizeText(text: string): Promise<SummarizeResponse> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+    throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
   const response = await fetch(`${API_BASE_URL}/gemini/summarize`, {
@@ -52,7 +52,7 @@ export async function summarizeText(text: string): Promise<SummarizeResponse> {
 export async function analyzeSentiment(text: string): Promise<SentimentResponse> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+    throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
   const response = await fetch(`${API_BASE_URL}/gemini/analyze_sentiment`, {
@@ -71,7 +71,7 @@ export async function analyzeSentiment(text: string): Promise<SentimentResponse>
 export async function generateResponse(text: string): Promise<GenerateResponse> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('API 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 API 키를 입력해주세요.');
+    throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
   const response = await fetch(`${API_BASE_URL}/gemini/generate_response`, {
