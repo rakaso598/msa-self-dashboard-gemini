@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import TextInputArea from '../components/TextInputArea';
 import DashboardCards from '../components/DashboardCards';
+import ErrorDisplay from '../components/ErrorDisplay';
 import { processText, ProcessTextResult } from '../utils/api';
 
 export default function Home() {
@@ -29,6 +30,11 @@ export default function Home() {
     }
   };
 
+  const handleRetry = () => {
+    setError(null);
+    handleSubmit();
+  };
+
   return (
     <Layout>
       <div className="max-w-6xl mx-auto">
@@ -42,25 +48,14 @@ export default function Home() {
 
         {/* 오류 메시지 */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <span className="text-red-400">⚠️</span>
-              </div>
-              <div className="ml-3">
-                <h3 className="text-sm font-medium text-red-800">
-                  오류가 발생했습니다
-                </h3>
-                <div className="mt-2 text-sm text-red-700">
-                  {error}
-                </div>
-              </div>
-            </div>
-          </div>
+          <ErrorDisplay
+            error={error}
+            onRetry={inputText.trim() ? handleRetry : undefined}
+          />
         )}
 
         {/* 대시보드 카드들 */}
-        <DashboardCards results={results} isLoading={isLoading} />
+        {!error && <DashboardCards results={results} isLoading={isLoading} />}
       </div>
     </Layout>
   );

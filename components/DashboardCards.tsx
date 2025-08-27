@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import ResultCard from './ResultCard';
+import SummaryCard from './SummaryCard';
 import SentimentChart from './SentimentChart';
+import AIResponseCard from './AIResponseCard';
 import { ProcessTextResult } from '../utils/api';
 import { hasApiKey } from '../utils/localStorage';
 
@@ -36,8 +37,11 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {[1, 2, 3].map((i) => (
           <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
-            <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
-            <div className="space-y-2">
+            <div className="flex items-center mb-4">
+              <div className="h-6 w-6 bg-gray-200 rounded mr-3"></div>
+              <div className="h-5 bg-gray-200 rounded w-1/3"></div>
+            </div>
+            <div className="space-y-3">
               <div className="h-4 bg-gray-200 rounded"></div>
               <div className="h-4 bg-gray-200 rounded w-5/6"></div>
               <div className="h-4 bg-gray-200 rounded w-4/6"></div>
@@ -62,33 +66,23 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {/* 요약 카드 */}
-      <ResultCard
-        title="텍스트 요약"
-        content={results.summary}
-        icon={<span className="text-blue-500">📄</span>}
-      />
-
-      {/* 키워드 카드 */}
-      <ResultCard
-        title="키워드"
-        content={results.keywords}
-        icon={<span className="text-green-500">🔑</span>}
-      />
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      {/* 요약 & 키워드 카드 */}
+      <div className="lg:col-span-1">
+        <SummaryCard
+          summary={results.summary}
+          keywords={results.keywords}
+        />
+      </div>
 
       {/* 감정 분석 차트 */}
-      <div className="lg:col-span-2">
+      <div className="lg:col-span-1">
         <SentimentChart sentiment={results.sentiment} />
       </div>
 
       {/* AI 응답 카드 */}
-      <div className="lg:col-span-2">
-        <ResultCard
-          title="AI 응답"
-          content={results.aiResponse}
-          icon={<span className="text-purple-500">🤖</span>}
-        />
+      <div className="lg:col-span-2 xl:col-span-1">
+        <AIResponseCard response={results.aiResponse} />
       </div>
     </div>
   );

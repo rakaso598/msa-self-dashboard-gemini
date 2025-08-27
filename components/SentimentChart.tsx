@@ -41,16 +41,19 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white rounded-lg shadow-md p-6 h-full">
       <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
         <span className="mr-3">📊</span>
         감정 분석
       </h3>
 
-      <div className="mb-4">
-        <p className="text-gray-700 font-medium">분석 결과: {sentiment}</p>
+      {/* 주요 감정 표시 */}
+      <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+        <p className="text-sm font-medium text-gray-700 mb-1">분석된 주요 감정</p>
+        <p className="text-lg font-semibold text-gray-900">{sentiment}</p>
       </div>
 
+      {/* 차트 섹션 */}
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -77,6 +80,14 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
             />
           </PieChart>
         </ResponsiveContainer>
+      </div>
+
+      {/* 부가 설명 */}
+      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+        <p className="text-xs text-blue-700">
+          💡 위 차트는 입력된 텍스트의 감정 분석 결과를 시각화한 것입니다.
+          실제 분석 결과에 따라 비율이 조정됩니다.
+        </p>
       </div>
     </div>
   );
