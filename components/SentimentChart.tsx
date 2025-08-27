@@ -35,11 +35,9 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
 
   const data = getSentimentData(sentiment);
 
-  const COLORS = ['#10B981', '#6B7280', '#EF4444'];
-
-  const CustomLabel = (props: any) => {
+  const CustomLabel = (props: { value?: number }) => {
     const { value } = props;
-    return `${value}%`;
+    return `${value || 0}%`;
   };
 
   return (
