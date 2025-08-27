@@ -1,12 +1,12 @@
-# AI 기반 셀프 분석 대시보드 (AI Self-Improvement Dashboard)
+# AI 기반 셀프 분석 대시보드 (AI Self-Improvement Dashboard) - ✨ [바로가기](https://msa-self-dashboard-gemini.vercel.app)
 
-### 메인화면
+### 🔒 메인화면
 <img alt="메인화면" src="docs/AI셀프분석대시보드LOCK.png" />
 
-### 결과화면
+### ☁️ 결과화면
 <img alt="결과화면" src="docs/AI셀프분석대시보드RESULT.png" />
 
-### 잠금 풀기
+### 🔓 잠금 풀기
 <img alt="잠금풀기" src="docs/DASHBOARD_UNLOCKING.png" />
 
 ### 환경변수 (Vercel에 입력)
