@@ -31,7 +31,7 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder="오늘의 생각이나 기록을 입력해보세요..."
-            className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+            className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black"
             disabled={isLoading}
           />
         </div>
