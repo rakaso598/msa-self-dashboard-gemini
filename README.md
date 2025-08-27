@@ -1,4 +1,22 @@
-# AI 기반 자기계발 대시보드 (AI Self-Improvement Dashboard)
+# AI 기반 셀프 분석 대시보드 (AI Self-Improvement Dashboard)
+
+### 메인화면
+<img alt="메인화면" src="docs/AI셀프분석대시보드LOCK.png" />
+
+### 결과화면
+<img alt="결과화면" src="docs/AI셀프분석대시보드RESULT.png" />
+
+### 잠금 풀기
+<img alt="잠금풀기" src="docs/DASHBOARD_UNLOCKING.png" />
+
+### 환경변수 (Vercel에 입력)
+```
+# 서비스 접근 키 설정 (실제 값으로 변경해주세요)
+NEXT_PUBLIC_API_KEY=액세스키는_GCP에배포된_도커컨테이너의_env에작성된_임의의키_입니다
+NEXT_PUBLIC_API_BASE_URL=https://msa-brain-gemini-173411279831.asia-northeast3.run.app
+```
+
+---
 
 이 프로젝트는 사용자가 텍스트 데이터를 입력하면, Gemini API를 활용하여 **텍스트 요약, 키워드 추출, 감정 분석**을 수행하고, 이를 시각적으로 보여주는 대시보드 형태의 웹 애플리케이션입니다.
 

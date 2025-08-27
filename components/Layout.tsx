@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <h1 className="text-xl font-bold text-gray-900">
-                AI 자기계발 대시보드
+                AI 셀프 분석 대시보드
               </h1>
             </div>
             <div className="flex items-center space-x-6">
