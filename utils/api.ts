@@ -1,6 +1,9 @@
 import { getApiKey } from './localStorage';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const SUMMARIZE_ENDPOINT = process.env.NEXT_PUBLIC_SUMMARIZE_ENDPOINT || '/gemini/summarize';
+const SENTIMENT_ENDPOINT = process.env.NEXT_PUBLIC_SENTIMENT_ENDPOINT || '/gemini/analyze_sentiment';
+const GENERATE_ENDPOINT = process.env.NEXT_PUBLIC_GENERATE_ENDPOINT || '/gemini/generate_response';
 
 const getHeaders = () => {
   const apiKey = getApiKey() || process.env.NEXT_PUBLIC_API_KEY;
@@ -44,7 +47,7 @@ export async function summarizeText(text: string): Promise<SummarizeResponse> {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
-  const response = await fetch(`${API_BASE_URL}/gemini/summarize`, {
+  const response = await fetch(`${API_BASE_URL}${SUMMARIZE_ENDPOINT}`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({ text }),
@@ -65,7 +68,7 @@ export async function analyzeSentiment(text: string): Promise<SentimentResponse>
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
-  const response = await fetch(`${API_BASE_URL}/gemini/analyze_sentiment`, {
+  const response = await fetch(`${API_BASE_URL}${SENTIMENT_ENDPOINT}`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({ text }),
@@ -86,7 +89,7 @@ export async function generateResponse(text: string): Promise<GenerateResponse> 
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
   }
 
-  const response = await fetch(`${API_BASE_URL}/gemini/generate_response`, {
+  const response = await fetch(`${API_BASE_URL}${GENERATE_ENDPOINT}`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({ text }),
