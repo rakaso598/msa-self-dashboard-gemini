@@ -17,12 +17,27 @@ const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
 
   return (
     <div className="mt-4">
-      <h4 className="text-sm font-semibold text-gray-700 mb-3">추출된 키워드</h4>
+      <h4 className="text-sm font-semibold mb-3" style={{ color: '#475569' }}>추출된 키워드</h4>
       <div className="flex flex-wrap gap-2">
         {keywordList.map((keyword, index) => (
           <span
             key={index}
-            className="inline-flex items-center bg-gray-200 text-gray-800 text-sm py-1 px-3 rounded-full font-medium transition-all hover:bg-gray-300"
+            className="inline-flex items-center text-sm py-1 px-3 rounded-full font-medium transition-all duration-200 hover:shadow-md cursor-pointer"
+            style={{
+              backgroundColor: '#e0f2fe',
+              color: '#0369a1',
+              border: '1px solid #bae6fd'
+            }}
+            onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.backgroundColor = '#0ea5e9';
+              target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.backgroundColor = '#e0f2fe';
+              target.style.color = '#0369a1';
+            }}
           >
             {keyword}
           </span>
