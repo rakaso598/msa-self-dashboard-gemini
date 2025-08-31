@@ -42,6 +42,8 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
         />
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
+            type="submit"
+            disabled={!value.trim() || isLoading}
           >
             {isLoading ? '분석 중...' : '분석 시작'}
           </Button>
