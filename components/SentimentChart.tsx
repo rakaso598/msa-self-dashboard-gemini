@@ -43,24 +43,24 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
   };
 
   return (
-    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%' }}>
-      <Typography variant="h6" fontWeight={700} color="text.primary" mb={3} sx={{ display: 'flex', alignItems: 'center' }}>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%', bgcolor: 'background.paper', boxShadow: 2 }}>
+      <Typography variant="h6" fontWeight={700} color="text.primary" mb={2} sx={{ display: 'flex', alignItems: 'center', fontSize: 20 }}>
         <span style={{ fontSize: 22, marginRight: 12 }}>📊</span>
         감정 분석
       </Typography>
 
       {/* 주요 감정 표시 */}
-      <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, backgroundColor: '#f8fafc', mb: 3 }}>
-        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5}>
+      <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, bgcolor: 'grey.50', mb: 2, boxShadow: 0 }}>
+        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5} sx={{ fontSize: 15 }}>
           분석된 주요 감정
         </Typography>
-        <Typography variant="body1" fontWeight={700} color="text.primary">
+        <Typography variant="body1" fontWeight={700} color="text.primary" sx={{ fontSize: 16 }}>
           {sentiment}
         </Typography>
       </Paper>
 
       {/* 차트 섹션 */}
-      <div style={{ height: 256 }}>
+      <div style={{ height: 220 }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
