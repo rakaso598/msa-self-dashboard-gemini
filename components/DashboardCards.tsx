@@ -95,22 +95,22 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div
+      className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      style={{ alignItems: 'stretch', minHeight: 380 }}
+    >
       {/* 요약 & 키워드 카드 */}
-      <div className="transform transition-transform hover:scale-105">
-        <SummaryCard
-          summary={results.summary}
-          keywords={results.keywords}
-        />
+      <div className="transform transition-transform hover:scale-105 h-full flex flex-col">
+        <SummaryCard summary={results.summary} keywords={results.keywords} />
       </div>
 
       {/* 감정 분석 차트 */}
-      <div className="transform transition-transform hover:scale-105">
+      <div className="transform transition-transform hover:scale-105 h-full flex flex-col">
         <SentimentChart sentiment={results.sentiment} />
       </div>
 
       {/* AI 응답 카드 */}
-      <div className="transform transition-transform hover:scale-105">
+      <div className="transform transition-transform hover:scale-105 h-full flex flex-col">
         <AIResponseCard response={results.aiResponse} />
       </div>
     </div>
