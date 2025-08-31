@@ -3,11 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { hasApiKey, removeApiKey } from '../utils/localStorage';
 import AuthModal from './AuthModal';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 const AuthButton: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
     setIsAuthenticated(hasApiKey());
@@ -27,8 +33,9 @@ const AuthButton: React.FC = () => {
     window.dispatchEvent(new Event('apiKeyChanged'));
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
     if (isAuthenticated) {
+      setAnchorEl(event.currentTarget);
       setShowDropdown(!showDropdown);
     } else {
       setIsModalOpen(true);
@@ -36,63 +43,34 @@ const AuthButton: React.FC = () => {
   };
 
   return (
-    <div className="relative">
-      <button
+    <div>
+      <Button
         onClick={handleButtonClick}
-        className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 ${isAuthenticated
-            ? 'hover:shadow-md'
-            : 'hover:shadow-md'
-          }`}
-        style={{
-          backgroundColor: isAuthenticated ? '#f0f9ff' : '#fef7f0',
-          color: isAuthenticated ? '#0369a1' : '#ea580c',
-          border: `1px solid ${isAuthenticated ? '#bae6fd' : '#fed7aa'}`
-        }}
+        variant="outlined"
+        color={isAuthenticated ? 'primary' : 'inherit'}
+        sx={{ minWidth: 40, minHeight: 40, borderRadius: '50%', p: 0, borderColor: isAuthenticated ? '#bae6fd' : '#fed7aa' }}
         title={isAuthenticated ? '서비스 접근 키 설정됨' : '서비스 접근 키 설정 필요'}
       >
-        <span className="text-xl">
-          {isAuthenticated ? '🔓' : '🔒'}
-        </span>
-      </button>
-
-      {/* 드롭다운 메뉴 */}
-      {showDropdown && isAuthenticated && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border z-10"
-          style={{ borderColor: '#e2e8f0' }}>
-          <div className="py-1">
-            <button
-              onClick={() => {
-                setIsModalOpen(true);
-                setShowDropdown(false);
-              }}
-              className="block px-4 py-2 text-sm w-full text-left transition-colors duration-200"
-              style={{ color: '#475569' }}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#f8fafc'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = 'transparent'}
-            >
-              접근 키 변경
-            </button>
-            <button
-              onClick={handleRemoveApiKey}
-              className="block px-4 py-2 text-sm w-full text-left transition-colors duration-200"
-              style={{ color: '#ef4444' }}
-              onMouseEnter={(e) => (e.target as HTMLElement).style.backgroundColor = '#fef2f2'}
-              onMouseLeave={(e) => (e.target as HTMLElement).style.backgroundColor = 'transparent'}
-            >
-              접근 키 삭제
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* 외부 클릭 감지 */}
-      {showDropdown && (
-        <div
-          className="fixed inset-0 z-0"
-          onClick={() => setShowDropdown(false)}
-        />
-      )}
-
+        {isAuthenticated ? <LockOpenIcon fontSize="medium" color="primary" /> : <LockIcon fontSize="medium" color="disabled" />}
+      </Button>
+      <Popover
+        open={Boolean(anchorEl) && isAuthenticated && showDropdown}
+        anchorEl={anchorEl}
+        onClose={() => { setAnchorEl(null); setShowDropdown(false); }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        PaperProps={{ sx: { borderRadius: 2, minWidth: 180, p: 1 } }}
+      >
+        <Typography variant="body2" sx={{ p: 1, color: 'text.secondary' }}>
+          접근 키 관리
+        </Typography>
+        <Button fullWidth onClick={() => { setIsModalOpen(true); setShowDropdown(false); }} sx={{ justifyContent: 'flex-start', color: 'text.primary' }}>
+          접근 키 변경
+        </Button>
+        <Button fullWidth onClick={handleRemoveApiKey} sx={{ justifyContent: 'flex-start', color: 'error.main' }}>
+          접근 키 삭제
+        </Button>
+      </Popover>
       <AuthModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -1,4 +1,16 @@
 import { getApiKey } from './localStorage';
+import {
+  SummarizeResponseSchema,
+  SentimentResponseSchema,
+  GenerateResponseSchema,
+  ProcessTextResultSchema,
+  SummarizeResponse,
+  SentimentResponse,
+  GenerateResponse,
+  ProcessTextResult,
+} from './apiSchemas';
+
+export type { ProcessTextResult } from './apiSchemas';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const SUMMARIZE_ENDPOINT = process.env.NEXT_PUBLIC_SUMMARIZE_ENDPOINT || '/gemini/summarize';
@@ -13,35 +25,7 @@ const getHeaders = () => {
   };
 };
 
-const validateEnvironment = () => {
-  if (!API_BASE_URL) {
-    throw new Error('API_BASE_URL이 설정되지 않았습니다. 환경 변수를 확인해주세요.');
-  }
-};
-
-export interface SummarizeResponse {
-  summary: string;
-  keywords: string;
-}
-
-export interface SentimentResponse {
-  sentiment: string;
-}
-
-export interface GenerateResponse {
-  response: string;
-}
-
-export interface ProcessTextResult {
-  summary: string;
-  keywords: string;
-  sentiment: string;
-  aiResponse: string;
-}
-
 export async function summarizeText(text: string): Promise<SummarizeResponse> {
-  validateEnvironment();
-
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
@@ -57,12 +41,11 @@ export async function summarizeText(text: string): Promise<SummarizeResponse> {
     throw new Error(`요약 API 오류: ${response.status}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  return SummarizeResponseSchema.parse(data);
 }
 
 export async function analyzeSentiment(text: string): Promise<SentimentResponse> {
-  validateEnvironment();
-
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
@@ -78,12 +61,11 @@ export async function analyzeSentiment(text: string): Promise<SentimentResponse>
     throw new Error(`감정 분석 API 오류: ${response.status}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  return SentimentResponseSchema.parse(data);
 }
 
 export async function generateResponse(text: string): Promise<GenerateResponse> {
-  validateEnvironment();
-
   const apiKey = getApiKey();
   if (!apiKey) {
     throw new Error('서비스 접근 키가 설정되지 않았습니다. 자물쇠 아이콘을 클릭하여 접근 키를 입력해주세요.');
@@ -99,7 +81,8 @@ export async function generateResponse(text: string): Promise<GenerateResponse> 
     throw new Error(`응답 생성 API 오류: ${response.status}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  return GenerateResponseSchema.parse(data);
 }
 
 export async function processText(text: string): Promise<ProcessTextResult> {
@@ -111,12 +94,13 @@ export async function processText(text: string): Promise<ProcessTextResult> {
       generateResponse(text),
     ]);
 
-    return {
+    const result = {
       summary: summarizeResult.summary,
       keywords: summarizeResult.keywords,
       sentiment: sentimentResult.sentiment,
       aiResponse: responseResult.response,
     };
+    return ProcessTextResultSchema.parse(result);
   } catch (error) {
     console.error('텍스트 처리 중 오류:', error);
     throw error;

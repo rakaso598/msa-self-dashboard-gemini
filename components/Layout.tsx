@@ -1,5 +1,7 @@
 import React from 'react';
 import AuthButton from './AuthButton';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,28 +9,25 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fafbfc' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#F8F8F8' }}>
       {/* 헤더 */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm border-b" style={{ borderColor: '#e2e8f0' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold" style={{ color: '#0f172a' }}>
-                AI 셀프 분석 대시보드
-              </h1>
-            </div>
-            <div className="flex items-center space-x-6">
-              <AuthButton />
-              <span className="text-sm font-medium" style={{ color: '#64748b' }}>
-                Powered by Gemini AI
-              </span>
-            </div>
+      <Paper elevation={0} square sx={{ bgcolor: 'white', borderBottom: '1px solid #e2e8f0', position: 'sticky', top: 0, zIndex: 100 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" fontWeight={700} color="text.primary">
+              AI 자기계발 대시보드
+            </Typography>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <AuthButton />
+            <Typography variant="body2" color="text.secondary" fontWeight={500}>
+              Powered by Gemini AI
+            </Typography>
           </div>
         </div>
-      </header>
-
+      </Paper>
       {/* 메인 콘텐츠 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 24px' }}>
         {children}
       </main>
     </div>

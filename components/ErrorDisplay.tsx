@@ -1,4 +1,8 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 interface ErrorDisplayProps {
   error: string;
@@ -7,35 +11,26 @@ interface ErrorDisplayProps {
 
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error, onRetry }) => {
   return (
-    <div className="text-center py-12">
-      <div className="rounded-lg p-6 max-w-md mx-auto border shadow-md"
-        style={{
-          backgroundColor: '#fef2f2',
-          borderColor: '#ef4444'
-        }}>
-        <div className="text-4xl mb-4" style={{ color: '#ef4444' }}>⚠️</div>
-        <div className="text-lg font-medium mb-2" style={{ color: '#0f172a' }}>
+    <div style={{ textAlign: 'center', padding: '48px 0' }}>
+      <Paper elevation={2} sx={{ borderRadius: 3, p: 4, maxWidth: 400, mx: 'auto', backgroundColor: '#fff7f7', border: '1px solid #fde0e0' }}>
+        <WarningAmberIcon sx={{ color: '#ef4444', fontSize: 40, mb: 2 }} />
+        <Typography variant="h6" color="#b91c1c" fontWeight={600} mb={1}>
           분석에 실패했습니다
-        </div>
-        <div className="text-sm mb-4" style={{ color: '#475569' }}>
+        </Typography>
+        <Typography color="#dc2626" fontSize={15} mb={2}>
           {error}
-        </div>
+        </Typography>
         {onRetry && (
-          <button
+          <Button
             onClick={onRetry}
-            className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
-            style={{
-              background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-              color: 'white',
-              border: 'none'
-            }}
-            onFocus={(e) => (e.target as HTMLElement).style.boxShadow = '0 0 0 2px #ef4444'}
-            onBlur={(e) => (e.target as HTMLElement).style.boxShadow = 'none'}
+            variant="contained"
+            color="error"
+            sx={{ borderRadius: 2, fontWeight: 600 }}
           >
             다시 시도
-          </button>
+          </Button>
         )}
-      </div>
+      </Paper>
     </div>
   );
 };
