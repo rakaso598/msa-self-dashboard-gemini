@@ -4,6 +4,9 @@ import SentimentChart from './SentimentChart';
 import AIResponseCard from './AIResponseCard';
 import { ProcessTextResult } from '../utils/api';
 import { hasApiKey } from '../utils/localStorage';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import LockIcon from '@mui/icons-material/Lock';
 
 interface DashboardCardsProps {
   results: ProcessTextResult | null;
@@ -45,16 +48,16 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
 
   if (!isApiKeySet) {
     return (
-      <div className="text-center py-12">
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 max-w-md mx-auto">
-          <div className="text-yellow-600 text-4xl mb-4">🔒</div>
-          <div className="text-yellow-800 text-lg font-medium mb-2">
+      <div style={{ textAlign: 'center', padding: '48px 0' }}>
+        <Paper elevation={2} sx={{ borderRadius: 3, p: 4, maxWidth: 400, mx: 'auto', backgroundColor: '#fffbe6', border: '1px solid #ffe58f' }}>
+          <LockIcon sx={{ color: '#f59e0b', fontSize: 40, mb: 2 }} />
+          <Typography variant="h6" color="#b45309" fontWeight={600} mb={1}>
             서비스 접근 키 설정이 필요합니다
-          </div>
-          <div className="text-yellow-700 text-sm">
+          </Typography>
+          <Typography color="#b45309" fontSize={15}>
             헤더의 자물쇠 아이콘을 클릭하여 서비스 접근 키를 설정해주세요.
-          </div>
-        </div>
+          </Typography>
+        </Paper>
       </div>
     );
   }
@@ -62,17 +65,17 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="bg-white rounded-xl shadow-md p-6 animate-pulse">
-            <div className="flex items-center mb-4">
-              <div className="h-6 w-6 bg-gray-200 rounded mr-3"></div>
-              <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+          <Paper key={i} elevation={2} sx={{ borderRadius: 3, p: 4, backgroundColor: '#f4f6fa' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+              <div style={{ height: 24, width: 24, background: '#e2e8f0', borderRadius: 6, marginRight: 12 }} />
+              <div style={{ height: 24, background: '#e2e8f0', borderRadius: 6, width: '33%' }} />
             </div>
-            <div className="space-y-3">
-              <div className="h-4 bg-gray-200 rounded"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-              <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ height: 16, background: '#e2e8f0', borderRadius: 6 }} />
+              <div style={{ height: 16, background: '#e2e8f0', borderRadius: 6, width: '83%' }} />
+              <div style={{ height: 16, background: '#e2e8f0', borderRadius: 6, width: '66%' }} />
             </div>
-          </div>
+          </Paper>
         ))}
       </div>
     );

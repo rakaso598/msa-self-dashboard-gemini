@@ -1,4 +1,9 @@
 import React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 
 interface TextInputAreaProps {
   value: string;
@@ -21,38 +26,35 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-8 mb-8">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 4, mb: 4 }}>
+      <Typography variant="h6" fontWeight={700} mb={3} color="text.primary">
         텍스트 입력
-      </h2>
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <div className="mb-6">
-          <textarea
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder="오늘의 생각이나 기록을 입력해보세요..."
-            className="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black"
-            disabled={isLoading}
-          />
-        </div>
-        <div className="flex justify-end">
-          <button
+        <TextField
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="오늘의 생각이나 기록을 입력해보세요..."
+          multiline
+          minRows={5}
+          fullWidth
+          disabled={isLoading}
+          sx={{ mb: 3, backgroundColor: '#fafbfc', borderRadius: 2 }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
             type="submit"
+            variant="contained"
+            color="primary"
             disabled={!value.trim() || isLoading}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed transform hover:scale-105"
+            sx={{ fontWeight: 700, px: 4, py: 1.5, borderRadius: 999, boxShadow: 2 }}
+            endIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : null}
           >
-            {isLoading ? (
-              <div className="flex items-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                분석 중...
-              </div>
-            ) : (
-              '분석 시작'
-            )}
-          </button>
+            {isLoading ? '분석 중...' : '분석 시작'}
+          </Button>
         </div>
       </form>
-    </div>
+    </Paper>
   );
 };
 
