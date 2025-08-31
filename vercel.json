@@ -1,0 +1,5 @@
+{
+  "env": {
+    "NEXT_PUBLIC_API_BASE_URL": "https://msa-brain-gemini-173411279831.asia-northeast3.run.app"
+  }
+}

@@ -17,8 +17,8 @@ const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
   if (keywordList.length === 0) return null;
 
   return (
-    <div style={{ marginTop: 16 }}>
-      <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={1}>
+    <div style={{ marginTop: 12 }}>
+      <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5} sx={{ fontSize: 15 }}>
         추출된 키워드
       </Typography>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -28,13 +28,14 @@ const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#e0e7ef',
-              color: '#334155',
+              bgcolor: 'grey.200',
+              color: 'text.primary',
               fontSize: 14,
               py: 0.5,
               px: 2,
               borderRadius: 999,
               fontWeight: 500,
+              boxShadow: 0,
             }}
           >
             {keyword}

@@ -35,7 +35,6 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="오늘의 생각이나 기록을 입력해보세요..."
-          multiline
           minRows={5}
           fullWidth
           disabled={isLoading}
@@ -44,11 +43,7 @@ const TextInputArea: React.FC<TextInputAreaProps> = ({
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             type="submit"
-            variant="contained"
-            color="primary"
             disabled={!value.trim() || isLoading}
-            sx={{ fontWeight: 700, px: 4, py: 1.5, borderRadius: 999, boxShadow: 2 }}
-            endIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : null}
           >
             {isLoading ? '분석 중...' : '분석 시작'}
           </Button>

@@ -16,21 +16,21 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
 
     if (normalized.includes('긍정') || normalized.includes('positive')) {
       return [
-        { name: '긍정', value: 70, color: '#0088FE' },
-        { name: '중립', value: 20, color: '#FFBB28' },
-        { name: '부정', value: 10, color: '#FF8042' },
+        { name: '긍정', value: 70, color: '#10b981' },
+        { name: '중립', value: 20, color: '#64748b' },
+        { name: '부정', value: 10, color: '#ef4444' },
       ];
     } else if (normalized.includes('부정') || normalized.includes('negative')) {
       return [
-        { name: '긍정', value: 10, color: '#0088FE' },
-        { name: '중립', value: 20, color: '#FFBB28' },
-        { name: '부정', value: 70, color: '#FF8042' },
+        { name: '긍정', value: 10, color: '#10b981' },
+        { name: '중립', value: 20, color: '#64748b' },
+        { name: '부정', value: 70, color: '#ef4444' },
       ];
     } else {
       return [
-        { name: '긍정', value: 30, color: '#0088FE' },
-        { name: '중립', value: 40, color: '#FFBB28' },
-        { name: '부정', value: 30, color: '#FF8042' },
+        { name: '긍정', value: 30, color: '#10b981' },
+        { name: '중립', value: 40, color: '#64748b' },
+        { name: '부정', value: 30, color: '#ef4444' },
       ];
     }
   };
@@ -43,24 +43,24 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
   };
 
   return (
-    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%' }}>
-      <Typography variant="h6" fontWeight={700} color="text.primary" mb={3} sx={{ display: 'flex', alignItems: 'center' }}>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%', bgcolor: 'background.paper', boxShadow: 2 }}>
+      <Typography variant="h6" fontWeight={700} color="text.primary" mb={2} sx={{ display: 'flex', alignItems: 'center', fontSize: 20 }}>
         <span style={{ fontSize: 22, marginRight: 12 }}>📊</span>
         감정 분석
       </Typography>
 
       {/* 주요 감정 표시 */}
-      <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, backgroundColor: '#f8fafc', mb: 3 }}>
-        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5}>
+      <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, bgcolor: 'grey.50', mb: 2, boxShadow: 0 }}>
+        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5} sx={{ fontSize: 15 }}>
           분석된 주요 감정
         </Typography>
-        <Typography variant="body1" fontWeight={700} color="text.primary">
+        <Typography variant="body1" fontWeight={700} color="text.primary" sx={{ fontSize: 16 }}>
           {sentiment}
         </Typography>
       </Paper>
 
       {/* 차트 섹션 */}
-      <div style={{ height: 256 }}>
+      <div style={{ height: 220 }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -89,8 +89,9 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
       </div>
 
       {/* 부가 설명 */}
-      <div className="mt-4 p-3 bg-blue-50 rounded-xl">
-        <p className="text-xs text-blue-700">
+      <div className="mt-4 p-3 rounded-xl"
+        style={{ backgroundColor: '#f0f9ff', border: '1px solid #0ea5e9' }}>
+        <p className="text-xs" style={{ color: '#0369a1' }}>
           💡 위 차트는 입력된 텍스트의 감정 분석 결과를 시각화한 것입니다.
           실제 분석 결과에 따라 비율이 조정됩니다.
         </p>
