@@ -1,4 +1,6 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import KeywordTags from './KeywordTags';
 
 interface SummaryCardProps {
@@ -8,25 +10,25 @@ interface SummaryCardProps {
 
 const SummaryCard: React.FC<SummaryCardProps> = ({ summary, keywords }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 h-full transition-shadow hover:shadow-lg">
-      <div className="flex items-center mb-6">
-        <span className="text-xl mr-3">📄</span>
-        <h3 className="text-xl font-bold text-gray-900">텍스트 요약 및 키워드</h3>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}>
+        <span style={{ fontSize: 22, marginRight: 12 }}>📄</span>
+        <Typography variant="h6" fontWeight={700} color="text.primary">
+          텍스트 요약 및 키워드
+        </Typography>
       </div>
-
-      {/* 요약 섹션 */}
-      <div className="mb-6">
-        <h4 className="text-sm font-semibold text-gray-700 mb-3">요약</h4>
-        <div className="bg-gray-50 rounded-xl p-4">
-          <p className="text-gray-700 leading-relaxed">
+      <div style={{ marginBottom: 24 }}>
+        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={1}>
+          요약
+        </Typography>
+        <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, backgroundColor: '#f8fafc' }}>
+          <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
             {summary || '요약 결과가 여기에 표시됩니다.'}
-          </p>
-        </div>
+          </Typography>
+        </Paper>
       </div>
-
-      {/* 키워드 태그 섹션 */}
       {keywords && <KeywordTags keywords={keywords} />}
-    </div>
+    </Paper>
   );
 };
 

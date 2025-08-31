@@ -1,4 +1,6 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 interface KeywordTagsProps {
   keywords: string;
@@ -7,7 +9,6 @@ interface KeywordTagsProps {
 const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
   if (!keywords) return null;
 
-  // 키워드를 쉼표, 세미콜론, 줄바꿈 등으로 분리
   const keywordList = keywords
     .split(/[,;.\n]/)
     .map(keyword => keyword.trim())
@@ -16,16 +17,28 @@ const KeywordTags: React.FC<KeywordTagsProps> = ({ keywords }) => {
   if (keywordList.length === 0) return null;
 
   return (
-    <div className="mt-4">
-      <h4 className="text-sm font-semibold text-gray-700 mb-3">추출된 키워드</h4>
-      <div className="flex flex-wrap gap-2">
+    <div style={{ marginTop: 16 }}>
+      <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={1}>
+        추출된 키워드
+      </Typography>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {keywordList.map((keyword, index) => (
-          <span
+          <Paper
             key={index}
-            className="inline-flex items-center bg-gray-200 text-gray-800 text-sm py-1 px-3 rounded-full font-medium transition-all hover:bg-gray-300"
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              backgroundColor: '#e0e7ef',
+              color: '#334155',
+              fontSize: 14,
+              py: 0.5,
+              px: 2,
+              borderRadius: 999,
+              fontWeight: 500,
+            }}
           >
             {keyword}
-          </span>
+          </Paper>
         ))}
       </div>
     </div>
