@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const SummarizeResponseSchema = z.object({
   summary: z.string(),
-  keywords: z.string(),
+  keywords: z.string().optional().default(''),
 });
 
 export const SentimentResponseSchema = z.object({
@@ -15,7 +15,7 @@ export const GenerateResponseSchema = z.object({
 
 export const ProcessTextResultSchema = z.object({
   summary: z.string(),
-  keywords: z.string(),
+  keywords: z.string().optional().default(''),
   sentiment: z.string(),
   aiResponse: z.string(),
 });
