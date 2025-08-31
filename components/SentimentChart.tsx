@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 interface SentimentChartProps {
   sentiment: string;
@@ -41,20 +43,24 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 h-full transition-shadow hover:shadow-lg">
-      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-        <span className="mr-3">📊</span>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%' }}>
+      <Typography variant="h6" fontWeight={700} color="text.primary" mb={3} sx={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ fontSize: 22, marginRight: 12 }}>📊</span>
         감정 분석
-      </h3>
+      </Typography>
 
       {/* 주요 감정 표시 */}
-      <div className="mb-6 p-4 bg-gray-50 rounded-xl">
-        <p className="text-sm font-semibold text-gray-700 mb-1">분석된 주요 감정</p>
-        <p className="text-lg font-bold text-gray-900">{sentiment}</p>
-      </div>
+      <Paper variant="outlined" sx={{ borderRadius: 2, p: 2, backgroundColor: '#f8fafc', mb: 3 }}>
+        <Typography variant="subtitle2" fontWeight={600} color="text.secondary" mb={0.5}>
+          분석된 주요 감정
+        </Typography>
+        <Typography variant="body1" fontWeight={700} color="text.primary">
+          {sentiment}
+        </Typography>
+      </Paper>
 
       {/* 차트 섹션 */}
-      <div className="h-64">
+      <div style={{ height: 256 }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -89,7 +95,7 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentiment }) => {
           실제 분석 결과에 따라 비율이 조정됩니다.
         </p>
       </div>
-    </div>
+    </Paper>
   );
 };
 

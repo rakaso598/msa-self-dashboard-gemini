@@ -1,4 +1,6 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import MarkdownRenderer from './MarkdownRenderer';
 
 interface AIResponseCardProps {
@@ -7,20 +9,33 @@ interface AIResponseCardProps {
 
 const AIResponseCard: React.FC<AIResponseCardProps> = ({ response }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 h-full transition-shadow hover:shadow-lg">
-      <div className="flex items-center mb-6">
-        <span className="text-xl mr-3">💡</span>
-        <h3 className="text-xl font-bold text-gray-900">AI의 인사이트</h3>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, height: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}>
+        <span style={{ fontSize: 22, marginRight: 12 }}>💡</span>
+        <Typography variant="h6" fontWeight={700} color="text.primary">
+          AI의 인사이트
+        </Typography>
       </div>
-
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4 max-h-96 overflow-y-auto">
+      <Paper
+        variant="outlined"
+        sx={{
+          borderRadius: 2,
+          p: 2,
+          background:
+            'linear-gradient(90deg, #ede9fe 0%, #e0f2fe 100%)',
+          maxHeight: 320,
+          overflowY: 'auto',
+        }}
+      >
         {response ? (
           <MarkdownRenderer content={response} />
         ) : (
-          <p className="text-gray-500 italic">AI 응답이 여기에 표시됩니다.</p>
+          <Typography color="text.secondary" fontStyle="italic">
+            AI 응답이 여기에 표시됩니다.
+          </Typography>
         )}
-      </div>
-    </div>
+      </Paper>
+    </Paper>
   );
 };
 

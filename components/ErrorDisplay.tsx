@@ -1,4 +1,8 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 interface ErrorDisplayProps {
   error: string;
@@ -7,24 +11,26 @@ interface ErrorDisplayProps {
 
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ error, onRetry }) => {
   return (
-    <div className="text-center py-12">
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
-        <div className="text-red-600 text-4xl mb-4">⚠️</div>
-        <div className="text-red-800 text-lg font-medium mb-2">
+    <div style={{ textAlign: 'center', padding: '48px 0' }}>
+      <Paper elevation={2} sx={{ borderRadius: 3, p: 4, maxWidth: 400, mx: 'auto', backgroundColor: '#fff7f7', border: '1px solid #fde0e0' }}>
+        <WarningAmberIcon sx={{ color: '#ef4444', fontSize: 40, mb: 2 }} />
+        <Typography variant="h6" color="#b91c1c" fontWeight={600} mb={1}>
           분석에 실패했습니다
-        </div>
-        <div className="text-red-700 text-sm mb-4">
+        </Typography>
+        <Typography color="#dc2626" fontSize={15} mb={2}>
           {error}
-        </div>
+        </Typography>
         {onRetry && (
-          <button
+          <Button
             onClick={onRetry}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+            variant="contained"
+            color="error"
+            sx={{ borderRadius: 2, fontWeight: 600 }}
           >
             다시 시도
-          </button>
+          </Button>
         )}
-      </div>
+      </Paper>
     </div>
   );
 };

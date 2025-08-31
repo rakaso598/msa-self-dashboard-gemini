@@ -1,4 +1,6 @@
 import React from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 interface ResultCardProps {
   title: string;
@@ -14,15 +16,17 @@ const ResultCard: React.FC<ResultCardProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
-      <div className="flex items-center mb-4">
-        {icon && <div className="mr-3">{icon}</div>}
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+    <Paper elevation={3} sx={{ borderRadius: 3, p: 3, mb: 2 }} className={className}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+        {icon && <div style={{ marginRight: 12 }}>{icon}</div>}
+        <Typography variant="subtitle1" fontWeight={600} color="text.primary">
+          {title}
+        </Typography>
       </div>
-      <div className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+      <Typography color="text.secondary" sx={{ whiteSpace: 'pre-wrap', lineHeight: 1.7 }}>
         {content || '분석 결과가 여기에 표시됩니다.'}
-      </div>
-    </div>
+      </Typography>
+    </Paper>
   );
 };
 
