@@ -84,10 +84,10 @@ const DashboardCards: React.FC<DashboardCardsProps> = ({ results, isLoading }) =
   if (!results) {
     return (
       <div className="text-center py-12">
-        <div className="text-gray-500 text-lg mb-2">
+        <div className="text-lg mb-2" style={{ color: '#475569' }}>
           📝 텍스트를 입력하고 분석을 시작해보세요
         </div>
-        <div className="text-gray-400 text-sm">
+        <div className="text-sm" style={{ color: '#64748b' }}>
           AI가 요약, 감정 분석, 응답을 생성해드립니다
         </div>
       </div>
